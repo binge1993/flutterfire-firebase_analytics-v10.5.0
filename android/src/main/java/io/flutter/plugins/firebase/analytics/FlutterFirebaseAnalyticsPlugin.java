@@ -25,16 +25,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import android.util.Log;
 
 /** Flutter plugin for Firebase Analytics. */
 public class FlutterFirebaseAnalyticsPlugin
     implements FlutterFirebasePlugin, MethodCallHandler, FlutterPlugin {
   private FirebaseAnalytics analytics;
   private MethodChannel channel;
+  private Context context;
 
   private void initInstance(BinaryMessenger messenger, Context context) {
     // 第1步：注释掉这个位置
 //    analytics = FirebaseAnalytics.getInstance(context);
+    this.context = context;
     String channelName = "plugins.flutter.io/firebase_analytics";
     channel = new MethodChannel(messenger, channelName);
     channel.setMethodCallHandler(this);
@@ -47,7 +50,7 @@ public class FlutterFirebaseAnalyticsPlugin
    */
   private void initFirebaseAnalytics(){
     if(this.context != null && this.analytics == null){
-      Log.i("zzb", "初始化initFirebaseAnalytics");
+      Log.i("emohe", "初始化initFirebaseAnalytics");
       analytics = FirebaseAnalytics.getInstance(this.context);
     }
   }
